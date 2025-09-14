@@ -8,11 +8,22 @@ A production-ready Helm chart to deploy the open-source [**State Manager**](http
 
 * Kubernetes cluster
 * Helm 3.x installed
+* (Optional) An Ingress controller if you enable ingress.
 * (Optional) External Redis and/or PostgreSQL endpoints if you don’t enable the bundled dev subcharts.
 
 ---
 
 ## Quick Start
+
+### Add a helm chart repository
+
+Add helm chart repository for your local helm environment:
+
+```bash
+helm repo add reconcile-kit https://reconcile-kit.github.io/charts/
+
+helm repo update
+```
 
 ### Installation
 
@@ -20,7 +31,7 @@ Start from the provided `values.yaml` and adjust as needed:
 
 ```bash
 # for example, enable ingress
-helm install state-manager . \
+helm install state-manager reconcile-kit/state-manager \
   --namespace state-manager \
   --create-namespace \
   --set ingress.enabled=true \
@@ -30,7 +41,7 @@ helm install state-manager . \
 If you prefer a custom values file:
 
 ```bash
-helm install state-manager . -n state-manager --create-namespace -f my-values.yaml
+helm install state-manager reconcile-kit/state-manager -n state-manager --create-namespace -f values.yaml
 ```
 
 > Tip: It's not recommended to use embedded Redis and PostgreSQL subharts for production.
@@ -40,7 +51,7 @@ helm install state-manager . -n state-manager --create-namespace -f my-values.ya
 ## Upgrade
 
 ```bash
-helm upgrade state-manager . -n state-manager -f my-values.yaml
+helm upgrade state-manager reconcile-kit/state-manager -n state-manager -f values.yaml
 ```
 
 ---
@@ -225,6 +236,9 @@ Extra volumes/mounts and pod scheduling preferences.
 
 
 # Change Log
+
+## 0.4.0
+- Add subchart Insight (UI)
 
 ## 0.2.0
 - Update version of state-manager application to [v0.0.8](https://github.com/reconcile-kit/state-manager/releases/tag/v0.0.8).
