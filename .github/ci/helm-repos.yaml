@@ -8,5 +8,5 @@ repositories:
   name: bitnamicharts
   pass_credentials_all: false
   password: ""
-  url: oci://registry-1.docker.io/bitnamicharts
+  url: https://charts.bitnami.com/bitnami
   username: ""
