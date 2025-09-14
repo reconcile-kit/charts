@@ -1,0 +1,47 @@
+
+name: Release chart
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+env:
+  # REGISTRY: docker.io
+  # IMAGE_NAME: dhnikolas/${{ github.event.repository.name }}
+  HELM_VERSION: 3.18.6
+  YQ_VERSION: 4.44.2
+
+jobs:
+  package-helm-chart:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install tools
+        uses: yokawasa/action-setup-kube-tools@v0.11.1
+        with:
+          setup-tools: |
+            helmv3
+            yq
+          helm: "${{ env.HELM_VERSION }}"
+          yq: "${{ env.YQ_VERSION }}"
+      
+      - name: Add dependencies
+        run: |
+          yq -M eval '.repositories[] | (.name + " " + .url)' .github/ci/helm-repos.yaml | xargs -L 1 helm repo add
+          make helm-repo-update
+
+      - name: Package Helm Chart
+        run: helm package ./helm/state-manager
+
+      - name: Log in to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+      
+      - name: Push Helm Chart to OCI Registry
+        run: helm push state-manager-*.tgz oci://${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
