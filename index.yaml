@@ -15,6 +15,30 @@ entries:
   state-manager:
   - apiVersion: v2
     appVersion: 0.0.11
+    created: "2025-09-14T14:56:12.916635296Z"
+    dependencies:
+    - condition: redis.enabled
+      name: redis
+      repository: oci://registry-1.docker.io/bitnamicharts
+      version: 22.0.3
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: oci://registry-1.docker.io/bitnamicharts
+      version: 15.x.x
+    - condition: ui.enabled
+      name: insight
+      repository: https://reconcile-kit.github.io/charts/
+      version: 0.x.x
+    description: Helm Chart for deploying to Kubernetes of service state-manager as
+      a part of reconcile-kit
+    digest: 9c650e19fc49b6192dc9db3900272840ee373df251f131113be5686f9a51fc57
+    name: state-manager
+    type: application
+    urls:
+    - https://github.com/reconcile-kit/charts/releases/download/state-manager-0.4.0/state-manager-0.4.0.tgz
+    version: 0.4.0
+  - apiVersion: v2
+    appVersion: 0.0.11
     created: "2025-09-14T14:28:31.965641818Z"
     dependencies:
     - condition: redis.enabled
@@ -33,4 +57,4 @@ entries:
     urls:
     - https://github.com/reconcile-kit/charts/releases/download/state-manager-0.3.1/state-manager-0.3.1.tgz
     version: 0.3.1
-generated: "2025-09-14T14:33:42.013239793Z"
+generated: "2025-09-14T14:56:12.916647408Z"
