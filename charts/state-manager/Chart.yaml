@@ -3,7 +3,7 @@ name: state-manager
 description: Helm Chart for deploying to Kubernetes of service state-manager 
   as a part of reconcile-kit 
 type: application
-version: 0.3.1
+version: 0.4.0
 appVersion: "0.0.11"
 dependencies:
 - condition: redis.enabled
@@ -14,3 +14,7 @@ dependencies:
   name: postgresql
   repository: oci://registry-1.docker.io/bitnamicharts
   version: 15.x.x
+- condition: ui.enabled
+  name: insight
+  repository: https://reconcile-kit.github.io/charts/
+  version: 0.x.x

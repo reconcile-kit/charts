@@ -105,6 +105,23 @@ autoscaling:
   targetCPUUtilizationPercentage: 80
   # targetMemoryUtilizationPercentage: 80
 
+## Insight subchart configuration
+# Ref: https://github.com/reconcile-kit/charts/blob/main/charts/insight/values.yaml
+ui:
+  ## -- Enables Insight subchart
+  enabled: false
+  ## Here you can put any param of Insight values chart. In example - ingress
+  # ingress:
+  #   enabled: false
+  #   className: ""
+  #   annotations: {}
+  #   hosts:
+  #     - host: chart-example.local
+  #       paths:
+  #         - path: /
+  #           pathType: ImplementationSpecific
+  #   tls: []
+
 extraEnvs: {}
 # - name: REDIS_SKIP_TLS
 #   value: ''

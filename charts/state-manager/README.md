@@ -137,6 +137,15 @@ Horizontal Pod Autoscaler settings.
 | `autoscaling.targetCPUUtilizationPercentage`    | int  |    `80` | Target average CPU utilization.        |
 | `autoscaling.targetMemoryUtilizationPercentage` | int  |    `80` | (Optional) Target memory utilization.  |
 
+### Insight UI (Subchart)
+
+Built-in Insight UI for state-manager
+
+| Key                                             | Type | Default | Description                            |
+| ----------------------------------------------- | ---- | ------: | -------------------------------------- |
+| `ui.enabled`                                    | bool | `false` | Enable Insight (UI for state-manager). |
+| `ui.*`                                          | map  |         | You can put anything here from [subchart Insight](https://github.com/reconcile-kit/charts/blob/main/charts/insight/values.yaml).                    |
+
 ### App Configuration
 
 Additional env vars for the app.

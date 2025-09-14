@@ -7,8 +7,6 @@ on:
       - main
 
 env:
-  # REGISTRY: docker.io
-  # IMAGE_NAME: dhnikolas/${{ github.event.repository.name }}
   HELM_VERSION: 3.18.6
   YQ_VERSION: 4.44.2
 
@@ -48,16 +46,3 @@ jobs:
           CR_TOKEN: "${{ secrets.GH_TOKEN_GENERAL }}"
         with:
           config: .github/ci/cr.yaml
-
-      # - name: Package Helm Chart
-      #   run: helm package ./helm/state-manager
-
-      # - name: Log in to Docker Hub
-      #   uses: docker/login-action@v3
-      #   with:
-      #     registry: ${{ env.REGISTRY }}
-      #     username: ${{ secrets.DOCKERHUB_USERNAME }}
-      #     password: ${{ secrets.DOCKERHUB_TOKEN }}
-      
-      # - name: Push Helm Chart to OCI Registry
-      #   run: helm push state-manager-*.tgz oci://${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
