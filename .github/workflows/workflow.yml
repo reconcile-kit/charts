@@ -32,16 +32,23 @@ jobs:
         run: |
           yq -M eval '.repositories[] | (.name + " " + .url)' .github/ci/helm-repos.yaml | xargs -L 1 helm repo add
           make helm-repo-update
-
-      - name: Package Helm Chart
-        run: helm package ./helm/state-manager
-
-      - name: Log in to Docker Hub
-        uses: docker/login-action@v3
-        with:
-          registry: ${{ env.REGISTRY }}
-          username: ${{ secrets.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_TOKEN }}
       
-      - name: Push Helm Chart to OCI Registry
-        run: helm push state-manager-*.tgz oci://${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+      - name: Release
+        uses: helm/chart-releaser-action@v1.5.0
+        env:
+          CR_TOKEN: "${{ secrets.GH_TOKEN }}"
+        with:
+          config: .github/ci/cr.yaml
+
+      # - name: Package Helm Chart
+      #   run: helm package ./helm/state-manager
+
+      # - name: Log in to Docker Hub
+      #   uses: docker/login-action@v3
+      #   with:
+      #     registry: ${{ env.REGISTRY }}
+      #     username: ${{ secrets.DOCKERHUB_USERNAME }}
+      #     password: ${{ secrets.DOCKERHUB_TOKEN }}
+      
+      # - name: Push Helm Chart to OCI Registry
+      #   run: helm push state-manager-*.tgz oci://${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
