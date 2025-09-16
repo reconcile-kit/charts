@@ -103,6 +103,10 @@ autoscaling:
   targetCPUUtilizationPercentage: 80
   # targetMemoryUtilizationPercentage: 80
 
+extraEnvs: {}
+# - name: STATE_MANAGER_URL
+#   value: http://127.0.0.1:8080
+
 # Additional volumes on the output Deployment definition.
 volumes: []
 # - name: foo
