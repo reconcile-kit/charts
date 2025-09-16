@@ -107,7 +107,7 @@ autoscaling:
 
 ## Insight subchart configuration
 # Ref: https://github.com/reconcile-kit/charts/blob/main/charts/insight/values.yaml
-ui:
+insight:
   ## -- Enables Insight subchart
   enabled: false
   ## Here you can put any param of Insight values chart. In example - ingress
