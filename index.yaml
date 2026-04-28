@@ -2,6 +2,17 @@ apiVersion: v1
 entries:
   insight:
   - apiVersion: v2
+    appVersion: 0.2.1
+    created: "2026-04-28T11:32:50.392358961Z"
+    description: Helm Chart for deploying to Kubernetes of service insight for state-manager
+      as a part of reconcile-kit
+    digest: f6034bdb70fae766b0f6212da7760d26ea0ede23b3681f083e67601b8f1ef1cf
+    name: insight
+    type: application
+    urls:
+    - https://github.com/reconcile-kit/charts/releases/download/insight-0.1.4/insight-0.1.4.tgz
+    version: 0.1.4
+  - apiVersion: v2
     appVersion: 0.0.12
     created: "2025-09-16T14:51:45.79075994Z"
     description: Helm Chart for deploying to Kubernetes of service insight for state-manager
@@ -103,4 +114,4 @@ entries:
     urls:
     - https://github.com/reconcile-kit/charts/releases/download/state-manager-0.3.1/state-manager-0.3.1.tgz
     version: 0.3.1
-generated: "2025-09-16T14:51:45.927150204Z"
+generated: "2026-04-28T11:32:50.39236948Z"
